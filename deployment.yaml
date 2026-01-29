@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: first-github-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: first-github
+  template:
+    metadata:
+      labels:
+        app: first-github
+    spec:
+      containers:
+        - name: first-github
+          image: fayaz1420/first-github:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9090
