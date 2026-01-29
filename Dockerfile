@@ -1,4 +1,5 @@
-FROM openjdk:8
+# Dockerfile
+FROM openjdk:17-jdk-slim
 EXPOSE 9090
-ADD target/first-github.jar first-github.jar
-ENTRYPOINT ["java","-jar","/first-github.jar"]
+COPY target/first-github.jar /app/first-github.jar
+ENTRYPOINT ["java", "-jar", "/app/first-github.jar"]
