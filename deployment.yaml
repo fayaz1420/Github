@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: first-github
-		  image: fayaz1420/first-github:latest
+          image: fayaz1420/first-github:latest
           imagePullPolicy: Always
           ports:
-           - containerPort: 9090
+            - containerPort: 9090
