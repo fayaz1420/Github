@@ -17,4 +17,4 @@ spec:
 		  image: fayaz1420/first-github:${GITHUB_SHA}
           imagePullPolicy: Always
           ports:
-            - containerPort: 9090
+           - containerPort: 9090
