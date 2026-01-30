@@ -11,7 +11,7 @@ public class WelcomeController {
 
 @GetMapping("/welcome") // serve root
 public String welcome() {
-   return "Hello, welcome!";
+   return "Hello!";
 }
 
 }
