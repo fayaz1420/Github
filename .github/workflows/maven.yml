@@ -1,3 +1,4 @@
+yaml
 name: Project CI/CD Flow
 
 permissions:
@@ -39,13 +40,13 @@ jobs:
       - name: Build & push Docker image
         uses: mr-smithers-excellent/docker-build-push@v6
         with:
-		  image: fayaz1420/first-github
-		  tags: ${{ github.sha }}
+          image: fayaz1420/first-github
+          tags: ${{ github.sha }}
           registry: docker.io
           dockerfile: Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-		  
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
