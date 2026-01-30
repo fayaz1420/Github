@@ -31,20 +31,19 @@ jobs:
         run: mvn clean install
 
       - name: Log in to Docker Hub
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build & push Docker image
-        uses: mr-smithers-excellent/docker-build-push@v6
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
         with:
-          image: fayaz1420/first-github
-          tags: ${{ github.sha }}, latest
-          registry: docker.io
-          dockerfile: Dockerfile
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          context: .
+          push: true
+          tags: |
+            fayaz1420/first-github:${{ github.sha }}
+            fayaz1420/first-github:latest
 
   deploy:
     needs: build
@@ -71,3 +70,5 @@ jobs:
         run: |
           kubectl apply -f deployment.yaml
           kubectl apply -f service.yaml
+          kubectl set image deployment/first-github-deployment first-github=fayaz1420/first-github:${{ github.sha }}
+          kubectl rollout status deployment/first-github-deployment --timeout=2m
