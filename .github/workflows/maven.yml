@@ -68,6 +68,6 @@ jobs:
           cluster-name: ${{ secrets.AKS_CLUSTER_NAME }}
 
       - name: Deploy to Kubernetes
-        run: 
+        run: |
           kubectl apply -f deployment.yaml
           kubectl apply -f service.yaml
